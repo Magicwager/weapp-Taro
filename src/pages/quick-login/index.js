@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro"
-import { View, Text, Input, Button, Navigator, Checkbox } from "@tarojs/components"
+import { View, Text, Input, Button, Checkbox } from "@tarojs/components"
 import "./index.scss"
 
 export default class Index extends Component {
@@ -76,6 +76,11 @@ export default class Index extends Component {
         }) */
 
     }
+    toCPA=()=>{
+        Taro.redirectTo({
+            url:'www.baidu.com'
+        })
+    }
     render() {
         return (
             <View className="quick-login-outer">
@@ -83,11 +88,11 @@ export default class Index extends Component {
                 <View className="login-title-tips">为了方便进行联系，请输入您的常用手机号码</View>
                 <Input className="input" value={this.state.inputValue} type="number" placeholder-className="input-text" placeholder="请输入手机号码" focus="true" maxlength="11" onBlur={this.checkPhoneNum} onInput={this.inputChange} />
                 <View className="cpa-checkbox-outer">
-                    <Checkbox checked={this.state.checked}  />
-                    <Text>我已阅读并同意</Text>
-                    <Navigator className="iss-cpa" url="">《闪送服务协议》</Navigator>
+                    <Checkbox checked={this.state.checked}  onChange={this.checkChange} />
+                    <Text className="text">我已阅读并同意</Text>
+                    <Text className="iss-cpa" onClick={this.toCPA}>《闪送服务协议》</Text>
                 </View>
-                <Button onClick={this.submitCode} disabled="{{btnDisabled}}" className={this.state.btnDisabled == true ? 'btn-disable' : 'btn-activity'}>发送验证码</Button>
+                <Button onClick={this.submitCode} disabled={this.state.btnDisabled} className={this.state.btnDisabled == true ? 'btn-disable' : 'btn-activity'}>发送验证码</Button>
             </View>
         )
     }

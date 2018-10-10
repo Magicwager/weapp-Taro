@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro"
-import { View, Text } from "@tarojs/components"
+import { View, Text, Button } from "@tarojs/components"
 import "./index.scss"
 
 export default class Index extends Component {
@@ -18,10 +18,16 @@ export default class Index extends Component {
 
   componentDidHide () { }
 
+  toQuickLogin=()=>{
+    Taro.redirectTo({
+      url:`/pages/quick-login/index`
+    })
+  }
   render () {
     return (
       <View className="index">
         <Text>Hello world!</Text>
+        <Button onClick={this.toQuickLogin}>快捷登陆</Button>
       </View>
     )
   }
